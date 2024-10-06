@@ -4,6 +4,7 @@
       <v-card>
 
         <v-img
+            v-if="currentMarker.image"
             :width="300"
             cover
             :src="currentMarker.image"
@@ -82,7 +83,7 @@
           </v-card-text>
 
           <v-card-text>
-            <validation-provider v-slot="{ errors }" name="Изображение" rules="required|image|size:2000">
+            <validation-provider v-slot="{ errors }" name="Изображение" rules="image|size:2000">
               <v-file-input
                   accept="image/png, image/jpeg"
                   placeholder="Выберите изображение"
