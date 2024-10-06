@@ -189,7 +189,7 @@
           </v-btn-toggle>
         </div>
       </l-control>
-      <l-tile-layer :url="url" :attribution="attribution"/>
+      <l-tile-layer :url="url"/>
       <l-marker
           v-for="(marker, index) in markers"
           :visible="currentZoom > 11"
