@@ -349,11 +349,20 @@ export default {
       this.currentZoom = zoom
     },
     createIcon(tag, index) {
-      let name = (index === this.currentIndex) ? tag + "_active" : tag
+      let name;
+      let iconSize;
+
+      if (index === this.currentIndex) {
+        name = tag + '_active'
+        iconSize = [25, 32]
+      } else {
+        name = tag
+        iconSize = [25, 25]
+      }
 
       return L.icon({
         iconUrl: this.getIcon(name),
-        iconSize: [25, 25],
+        iconSize: iconSize,
         iconAnchor: [12, 25]
       })
     },

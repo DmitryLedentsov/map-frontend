@@ -8,6 +8,7 @@
           </v-card-title>
 
           <v-img
+              v-if="currentMarker.image"
               :width="300"
               cover
               :src="currentMarker.image"
@@ -57,7 +58,7 @@
             <v-btn
                 color="gray darken-1"
                 text
-                @click="cancelUpdate"
+                @click="closeCard"
             >
               Отмена
             </v-btn>
@@ -380,7 +381,7 @@ export default {
       this.removeCurrentMarker()
     },
 
-    cancelUpdate() {
+    closeCard() {
       this.$refs.uobserver.reset()
       this.showCard = false
     },
@@ -399,7 +400,7 @@ export default {
     },
 
     updateObject() {
-      this.closeForm()
+      this.closeCard()
 
       const id = this.currentMarker.id
 
@@ -421,13 +422,13 @@ export default {
     },
 
     deleteObject() {
-      this.closeForm()
+      this.closeCard()
 
       const id = this.currentMarker.id
 
       this.$http.delete(`street-objects/${id}`).then(() => {
-        this.cancel()
         this.removeCurrentMarker()
+        this.currentIndex = -1
       }).catch(error => {
         console.log(error.message)
         this.detectRedirect(error)
@@ -444,10 +445,20 @@ export default {
       this.currentZoom = zoom
     },
     createIcon(tag, index) {
-      let name = (index === this.currentIndex) ? tag + "_active" : tag
+      let name;
+      let iconSize;
+
+      if (index === this.currentIndex) {
+        name = tag + '_active'
+        iconSize = [25, 32]
+      } else {
+        name = tag
+        iconSize = [25, 25]
+      }
+
       return L.icon({
         iconUrl: this.getIcon(name),
-        iconSize: [25, 25],
+        iconSize: iconSize,
         iconAnchor: [12, 25]
       })
     },
