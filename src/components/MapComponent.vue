@@ -82,7 +82,6 @@
               </v-text-field>
             </validation-provider>
           </v-card-text>
-          -->
 
           <v-card-text>
             <validation-provider v-slot="{ errors }" name="Изображение" rules="image|size:2000">
@@ -96,6 +95,7 @@
               ></v-file-input>
             </validation-provider>
           </v-card-text>
+          -->
 
           <v-card-actions>
             <v-btn
