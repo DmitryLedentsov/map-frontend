@@ -60,6 +60,7 @@
             </validation-provider>
           </v-card-text>
 
+          <!--
           <v-card-text>
             <validation-provider v-slot="{ errors }" name="ФИО" rules="required">
               <v-text-field clearable
@@ -81,6 +82,7 @@
               </v-text-field>
             </validation-provider>
           </v-card-text>
+          -->
 
           <v-card-text>
             <validation-provider v-slot="{ errors }" name="Изображение" rules="image|size:2000">
@@ -238,8 +240,8 @@ export default {
       coordinates: null,
       title: "",
       description: "",
-      creatorName: "",
-      creatorContact: "",
+      creatorName: null,
+      creatorContact: null,
 
       image: null
     },
